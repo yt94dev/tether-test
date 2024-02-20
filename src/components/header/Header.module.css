@@ -1,0 +1,32 @@
+.header {
+    background: rgb(23, 45, 62);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+    border-radius: 10px 10px 0 0;
+    margin-top: 15px;
+}
+
+.title {
+    color: white;
+    font-size: 25pt;
+    line-height: 26pt;
+}
+
+.titleContainer {
+    display: flex;
+}
+
+.currencyPair {
+    color: rgb(159, 167, 174);
+    font-size: 18pt;
+    display: flex;
+    align-items: flex-end;
+    line-height: 24pt;
+    padding: 0 0 0 10px;
+}
+
+.button{
+    height: 35px;
+}

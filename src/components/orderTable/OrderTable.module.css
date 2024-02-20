@@ -1,0 +1,11 @@
+.tablesWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableW50 {
+    width: 49%;
+    height: 100%;
+    max-height: 600px;
+    overflow-y: auto;
+}

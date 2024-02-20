@@ -1,0 +1,21 @@
+.tableHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableHeader div {
+    color: rgb(159, 167, 174);
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px 0 0;
+}
+
+.row div {
+    width: 100%;
+}
