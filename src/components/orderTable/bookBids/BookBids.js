@@ -4,8 +4,8 @@ import { bidsSelector } from '../../store/orderBookReducer';
 import styles from './BookBids.module.css'
 
 const BookBids = () => {
-    // const bids = useSelector(bidsSelector);
-    // console.log(bids);
+    const bids = useSelector(bidsSelector);
+    console.log(bids);
 
     return(
         <div>
@@ -16,12 +16,17 @@ const BookBids = () => {
                 <div>price</div>
             </div>
             <div className={styles.tableBody}>
-                <div className={styles.row}>
-                    <div>750</div>
-                    <div>492.4</div>
-                    <div>492.4</div>
-                    <div>50000</div>
-                </div>
+                    {bids && bids.map((bidRow) => {
+                        return (
+                            <div className={styles.row}>
+                                <div>{bidRow[1]}</div>
+                                <div>{bidRow[2]}</div>
+                                <div>{bidRow[2]}</div>
+                                <div>{bidRow[0]}</div>
+                            </div>
+                        )
+                    })}
+                
             </div>
         </div>
     )

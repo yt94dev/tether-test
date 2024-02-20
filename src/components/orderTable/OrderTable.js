@@ -19,16 +19,12 @@ const OrderTable = () => {
             shouldReconnect: () => true,
             onMessage: (event) =>  {
                 const evt = JSON.parse(event.data);
-                console.log(evt)
                 if(evt?.event === 'subscribed'){
-                    console.log('subscribed')
                     dispatch(setSubscribed(true))
                 }
 
-                if(subscribed){
-                    console.log('saved')
-
-                    dispatch(setBids(evt))
+                if(subscribed  && evt[1] !== 'hb'){
+                    dispatch(setBids(evt[1]))
                 }
                 // dispatch event to store
                 // dispatch(setBids(event.data))
