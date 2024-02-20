@@ -12,14 +12,15 @@ const BITFINEX_API = 'wss://api.bitfinex.com/ws/2';
 const OrderTable = () => {
     const dispatch = useDispatch()
 
-    const { sendJsonMessage, lastJsonMessage, readyState, getWebSocket } = useWebSocket(
+    const { sendJsonMessage, lastJsonMessage, readyState, getWebSocket, lastMessage } = useWebSocket(
         BITFINEX_API,
         {
             shouldReconnect: () => true,
             onMessage: (event) =>  {
+                console.log(event)
                 // dispatch event to store
-                // dispatch(setBids(event))
-                console.log(JSON.stringify(event))
+                // dispatch(setBids(event.data))
+                // console.log(JSON.stringify(event))
             }
         },
     );
@@ -41,9 +42,14 @@ const OrderTable = () => {
     }, [readyState])
     
       // Run when a new WebSocket message is received (lastJsonMessage)
-    useEffect(() => {
-        console.log(`Got a new message: ${JSON.stringify(lastJsonMessage)}`)
-    }, [lastJsonMessage])
+    // useEffect(() => {
+    //     console.log(`Got a new message: ${JSON.stringify(lastJsonMessage)}`)
+    //     // const apiMsg = JSON.parse(lastJsonMessage);
+    //     console.log(typeof lastJsonMessage)
+    //     if(lastJsonMessage?.event === 'subscribed'){
+
+    //     }
+    // }, [lastJsonMessage, lastMessage])
 
     
     return(

@@ -4,8 +4,8 @@ import { bidsSelector } from '../../store/orderBookReducer';
 import styles from './BookBids.module.css'
 
 const BookBids = () => {
-    const bids = useSelector(bidsSelector);
-    console.log(bids);
+    // const bids = useSelector(bidsSelector);
+    // console.log(bids);
 
     return(
         <div>
