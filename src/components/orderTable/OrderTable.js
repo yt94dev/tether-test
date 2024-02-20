@@ -2,17 +2,23 @@ import BookAsks from "./bookAsks/BookAsks";
 import BookBids from "./bookBids/BookBids";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { useEffect } from "react";
+import { useDispatch } from 'react-redux'
+import { setBids } from '../store/orderBookReducer';
+
 import styles from './OrderTable.module.css'
 
 const BITFINEX_API = 'wss://api.bitfinex.com/ws/2';
 
 const OrderTable = () => {
+    const dispatch = useDispatch()
+
     const { sendJsonMessage, lastJsonMessage, readyState, getWebSocket } = useWebSocket(
         BITFINEX_API,
         {
             shouldReconnect: () => true,
             onMessage: (event) =>  {
                 // dispatch event to store
+                // dispatch(setBids(event))
                 console.log(JSON.stringify(event))
             }
         },
