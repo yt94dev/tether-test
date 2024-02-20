@@ -2,8 +2,8 @@ import BookAsks from "./bookAsks/BookAsks";
 import BookBids from "./bookBids/BookBids";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux'
-import { setBids } from '../store/orderBookReducer';
+import { useDispatch, useSelector } from 'react-redux'
+import { setBids, setSubscribed, subscribedSelector } from '../store/orderBookReducer';
 
 import styles from './OrderTable.module.css'
 
@@ -11,13 +11,25 @@ const BITFINEX_API = 'wss://api.bitfinex.com/ws/2';
 
 const OrderTable = () => {
     const dispatch = useDispatch()
+    const subscribed = useSelector(subscribedSelector);
 
     const { sendJsonMessage, lastJsonMessage, readyState, getWebSocket, lastMessage } = useWebSocket(
         BITFINEX_API,
         {
             shouldReconnect: () => true,
             onMessage: (event) =>  {
-                console.log(event)
+                const evt = JSON.parse(event.data);
+                console.log(evt)
+                if(evt?.event === 'subscribed'){
+                    console.log('subscribed')
+                    dispatch(setSubscribed(true))
+                }
+
+                if(subscribed){
+                    console.log('saved')
+
+                    dispatch(setBids(evt))
+                }
                 // dispatch event to store
                 // dispatch(setBids(event.data))
                 // console.log(JSON.stringify(event))
@@ -38,18 +50,19 @@ const OrderTable = () => {
                 len: 25,
             })
         }
+        console.log(readyState)
         // getWebSocket()?.close();
     }, [readyState])
     
-      // Run when a new WebSocket message is received (lastJsonMessage)
+    //   // Run when a new WebSocket message is received (lastJsonMessage)
     // useEffect(() => {
     //     console.log(`Got a new message: ${JSON.stringify(lastJsonMessage)}`)
     //     // const apiMsg = JSON.parse(lastJsonMessage);
-    //     console.log(typeof lastJsonMessage)
-    //     if(lastJsonMessage?.event === 'subscribed'){
+    //     // console.log(typeof lastJsonMessage)
+    //     // if(lastJsonMessage?.event === 'subscribed'){
 
-    //     }
-    // }, [lastJsonMessage, lastMessage])
+    //     // }
+    // }, [lastJsonMessage])
 
     
     return(
