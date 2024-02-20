@@ -1,6 +1,12 @@
+import { useSelector } from 'react-redux';
+import { bidsSelector } from '../../store/orderBookReducer';
+
 import styles from './BookBids.module.css'
 
 const BookBids = () => {
+    const bids = useSelector(bidsSelector);
+    console.log(bids);
+
     return(
         <div>
             <div className={styles.tableHeader}>
