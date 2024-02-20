@@ -32,6 +32,13 @@ const orderBookSlice = createSlice({
             //     //     state.bids = action.payload
             //     // }
             // }
+            // if(state.bids.length >= 50 < 100){
+            //     state.bids = action.payload.concat(state.bids);
+            // }
+
+            // if(state.bids.length >= 120){
+            //     state.bids = action.payload.concat([]);
+            // }
             
         },
         setAsks: (state, action) => {
